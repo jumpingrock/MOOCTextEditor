@@ -67,8 +67,39 @@ public abstract class Document {
 		// TODO: Implement this method so that you can call it from the 
 	    // getNumSyllables method in BasicDocument (module 2) and 
 	    // EfficientDocument (module 3).
-	    return 0;
+
+		Character previousLetter = null;
+		char[] charSet = "aeiouy".toCharArray();
+		int syllablesCount = 0;
+
+//		String[] abc = word.split("[a|e|i|o|u|y]+");
+
+
+		for (int i=0; i<word.length(); i++) {
+			for (int j=0; j<charSet.length; j++) {
+				if(i==0) {
+					if (charSet[j] == word.charAt(i)){
+
+						syllablesCount ++;
+						previousLetter = word.charAt(i);
+					}
+				}else if (charSet[j] == word.charAt(i) && previousLetter == null){
+
+					syllablesCount ++;
+					previousLetter = word.charAt(i);
+				}
+			}
+
+
+		}
+		System.out.println("Syllables word: " + word);
+		System.out.println("Syllables count: " + syllablesCount);
+
+		return syllablesCount;
+
 	}
+	
+
 	
 	/** A method for testing
 	 * 

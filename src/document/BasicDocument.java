@@ -1,5 +1,7 @@
 package document;
 
+import org.omg.CORBA.Any;
+
 import java.util.List;
 
 /** 
@@ -36,7 +38,11 @@ public class BasicDocument extends Document
 	{
 		//TODO: Implement this method in week 2 according to the comments above.  
 		// See the Module 2 support videos if you need help.
-	    return 0;
+
+//		List<String> retValue = getTokens("[^1-9!?.,(): ]+");
+//		System.out.println("Get number of words: " +getTokens("[^1-9!?.,(): ]+").size());
+
+	    return  getTokens("[^1-9!?.,(): ]+").size();
 	}
 	
 	/**
@@ -56,7 +62,9 @@ public class BasicDocument extends Document
 	{
 	    //TODO: Implement this method.  See the Module 2 support videos 
         // if you need help.
-        return 0;
+//		System.out.println("Get number of sentence: " +getTokens("[^!?.]+").size());
+
+        return getTokens("[^!?.]+").size();
 	}
 	
 	/**
@@ -81,7 +89,15 @@ public class BasicDocument extends Document
 		// expression for the syllable counting.  We recommend you implement 
 		// the helper function countSyllables in Document.java using a loop, 
 		// and then call it here on each word.
-        return 0;
+
+		int syllablesCount = 0;
+		List words = getTokens("[^1-9!?.,(): ]+");
+		for (Object word: words) {
+//			System.out.println("Syllables word: " + word);
+			syllablesCount += countSyllables(word.toString());
+		}
+//		System.out.println("Syllables count: " + syllablesCount);
+        return syllablesCount;
 	}
 	
 	

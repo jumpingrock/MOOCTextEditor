@@ -63,8 +63,8 @@ public class BasicDocument extends Document
 	    //TODO: Implement this method.  See the Module 2 support videos 
         // if you need help.
 //		System.out.println("Get number of sentence: " +getTokens("[^!?.]+").size());
-
-        return getTokens("[^!?.]+").size();
+		return super.getNumSentences();
+//        return getTokens("[^!?.]+").size();
 	}
 	
 	/**
@@ -90,14 +90,15 @@ public class BasicDocument extends Document
 		// the helper function countSyllables in Document.java using a loop, 
 		// and then call it here on each word.
 
-		int syllablesCount = 0;
-		List words = getTokens("[^1-9!?.,(): ]+");
-		for (Object word: words) {
-//			System.out.println("Syllables word: " + word);
-			syllablesCount += countSyllables(word.toString());
-		}
-//		System.out.println("Syllables count: " + syllablesCount);
-        return syllablesCount;
+//		int syllablesCount = 0;
+//		List words = getTokens("[^1-9!?.,(): ]+");
+//		for (Object word: words) {
+////			System.out.println("Syllables word: " + word);
+//			syllablesCount += countSyllables(word.toString());
+//		}
+////		System.out.println("Syllables count: " + syllablesCount);
+//        return syllablesCount;
+		return super.getNumSyllables();
 	}
 	
 	

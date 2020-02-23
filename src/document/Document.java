@@ -34,11 +34,11 @@ public abstract class Document {
 		ArrayList<String> tokens = new ArrayList<String>();
 		Pattern tokSplitter = Pattern.compile(pattern);
 		Matcher m = tokSplitter.matcher(text);
-		
+
 		while (m.find()) {
 			tokens.add(m.group());
 		}
-		
+
 		return tokens;
 	}
 	
@@ -85,20 +85,17 @@ public abstract class Document {
 		for (int i=0; i<word.length(); i++) {
 			for (int j=0; j<charSet.length; j++) {
 				if (word.charAt(i) == charSet[1] && i == word.length()-1 && syllablesCount > 0 && previousLetter == null) {
-//					System.out.println("word NOT recorded 1: " + word + " " + word.charAt(i));
 					break;
 				}
 				else if(word.charAt(i) == charSet[j] && previousLetter == null){
 					previousLetter = word.charAt(i);
 					syllablesCount ++;
 					syllablesCountedInCurrentLoop = true;
-//					System.out.println("word recorded: " + word + " " + word.charAt(i));
 					break;
 				}
 				else if(word.charAt(i) == charSet[j] && previousLetter != null){
 					previousLetter = word.charAt(i);
 					syllablesCountedInCurrentLoop = true;
-//					System.out.println("word NOT recorded 2: " + word + " " + word.charAt(i));
 					break;
 				}
 
@@ -109,8 +106,6 @@ public abstract class Document {
 			syllablesCountedInCurrentLoop = false;
 
 		}
-//		System.out.println("Syllables word: " + word);
-//		System.out.println("Syllables count: " + syllablesCount);
 
 		return syllablesCount;
 
@@ -161,28 +156,13 @@ public abstract class Document {
 	
 	
 	/** Return the number of words in this document */
-	public int getNumWords(){
-		System.out.println("wordtoken" + getTokens("[^1-9!?.,(): ]+").size());
-		return getTokens("[^1-9!?.,(): ]+").size();
-	}
+	public abstract int getNumWords();
 	
 	/** Return the number of sentences in this document */
-	public int getNumSentences(){
-		System.out.println("numtoken" + getTokens("[^!?.]+").size());
-
-		return getTokens("[^!?.]+").size();
-	}
+	public abstract int getNumSentences();
 	
 	/** Return the number of syllables in this document */
-	public int getNumSyllables(){
-		int syllablesCount = 0;
-		List words = getTokens("[^1-9!?.,(): ]+");
-		for (Object word: words) {
-			System.out.println("Syllables word: " + word);
-			syllablesCount += countSyllables(word.toString());
-		}
-		return syllablesCount;
-	}
+	public abstract int getNumSyllables();
 	
 	/** Return the entire text of this document */
 	public String getText()
@@ -195,11 +175,9 @@ public abstract class Document {
 	{
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-		System.out.println("from getnumword(): " + getNumWords());
-		System.out.println("from getnumsentences(): " + getNumSentences());
-		System.out.println("from getnumSyll(): " + getNumSyllables());
+		int words =  getNumWords();
 
-		double fScore = 206.835 - (1.015*(getNumWords()/getNumSentences())) - (84.6*(getNumSyllables()/getNumWords()));
+		double fScore = 206.835 - 1.015*(Double.valueOf(getNumWords()) / Double.valueOf(getNumSentences())) - 84.6*(Double.valueOf(getNumSyllables())/Double.valueOf(getNumWords()));
 
 	    return fScore;
 	}

@@ -28,12 +28,13 @@ public class DocumentBenchmarking {
 
 		// The number of steps to run.  
 		// You can play around with this.
-		int numSteps = 20;
+		int numSteps = 100;
 		
 		// THe number of characters to start with. 
 		// You can play around with this.
 		int start = 50000;
-		
+		String stringReader;
+		System.out.println("NumberOfChars BasicTime EfficientTime");
 		// TODO: Fill in the rest of this method so that it runs two loops
 		// and prints out timing results as described in the assignment 
 		// instructions and following the pseudocode below.
@@ -57,7 +58,26 @@ public class DocumentBenchmarking {
 			 *     b. Calls fleshScore on this document
 			 * 6. Print out the time it took to complete the loop in step 5 
 			 *      (on the same line as the first print statement) followed by a newline (\n) 
-			 */  
+			 */
+			stringReader = getStringFromFile(textfile, numToCheck);
+
+			long startTime1 = System.nanoTime();
+			BasicDocument newBasicDocument = new BasicDocument(stringReader);
+			newBasicDocument.getFleschScore();
+
+			long endTime1 = System.nanoTime();
+			double estTime1 = (endTime1 - startTime1) / 1000000000.0;
+
+			long startTime2 = System.nanoTime();
+			EfficientDocument newEfficientDocument = new EfficientDocument(stringReader);
+			newEfficientDocument.getFleschScore();
+			long endTime2 = System.nanoTime();
+			double estTime2 = (endTime2 - startTime2) / 1000000000.0;
+
+			System.out.print(numToCheck + "\t");
+			System.out.print(estTime1 + "\t");
+			System.out.print(estTime2 + "\n");
+
 			 
 		}
 	

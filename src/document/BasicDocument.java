@@ -38,7 +38,6 @@ public class BasicDocument extends Document
 	{
 		//TODO: Implement this method in week 2 according to the comments above.  
 		// See the Module 2 support videos if you need help.
-		
 
 	    return  getTokens("[^1-9!?.,(): ]+").size();
 	}

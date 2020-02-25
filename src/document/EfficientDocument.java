@@ -1,5 +1,6 @@
 package document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** 
@@ -54,6 +55,22 @@ public class EfficientDocument extends Document {
 		
 		// TODO: Finish this method.  Remember the countSyllables method from 
 		// Document.  That will come in handy here.  isWord defined above will also help.
+		List<String> listOfWords = new ArrayList<>();
+		List<String> listOfPunctuation = new ArrayList<>();
+		int countOfSyllables = 0;
+		for (String word: tokens) {
+
+			if (isWord(word)) {
+				listOfWords.add(word);
+				countOfSyllables += countSyllables(word);
+			}else {
+				listOfPunctuation.add(word);
+			}
+
+		}
+		numSentences = listOfPunctuation.size();
+		numWords = listOfWords.size();
+		numSyllables = countOfSyllables;
 	}
 
 	
@@ -73,7 +90,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSentences() {
 		//TODO: write this method.  Hint: It's simple
-		return 0;
+		return numSentences;
 	}
 
 	
@@ -94,7 +111,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumWords() {
 		//TODO: write this method.  Hint: It's simple
-	    return 0;
+	    return numWords;
 	}
 
 
@@ -116,7 +133,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSyllables() {
         //TODO: write this method.  Hint: It's simple
-        return 0;
+        return numSyllables;
 	}
 	
 	// Can be used for testing

@@ -78,10 +78,6 @@ public abstract class Document {
 
 		word = word.toLowerCase();
 
-		if(word == "the" || word == "fly" || word == "yes" || word == "cave" || word == "double"){
-			return 1;
-		}
-
 		for (int i=0; i<word.length(); i++) {
 			for (int j=0; j<charSet.length; j++) {
 				if (word.charAt(i) == charSet[1] && i == word.length()-1 && syllablesCount > 0 && previousLetter == null) {
@@ -175,7 +171,7 @@ public abstract class Document {
 	{
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-		int words =  getNumWords();
+//		int words =  getNumWords();
 
 		double fScore = 206.835 - 1.015*(Double.valueOf(getNumWords()) / Double.valueOf(getNumSentences())) - 84.6*(Double.valueOf(getNumSyllables())/Double.valueOf(getNumWords()));
 

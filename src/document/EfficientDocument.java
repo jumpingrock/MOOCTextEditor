@@ -58,16 +58,29 @@ public class EfficientDocument extends Document {
 		List<String> listOfWords = new ArrayList<>();
 		List<String> listOfPunctuation = new ArrayList<>();
 		int countOfSyllables = 0;
-		for (String word: tokens) {
+//		System.out.println("token size: "+tokens.size());
+		boolean inSentence = false;
 
-			if (isWord(word)) {
-				listOfWords.add(word);
-				countOfSyllables += countSyllables(word);
-			}else {
-				listOfPunctuation.add(word);
+		for (int i=0; i<tokens.size(); i++) {
+
+			boolean isThisWord = isWord(tokens.get(i));
+
+			if (isThisWord) {
+				listOfWords.add(tokens.get(i));
+				countOfSyllables += countSyllables(tokens.get(i));
+				inSentence = true;
+
+			}else if(!isThisWord) {
+				listOfPunctuation.add(tokens.get(i));
+				inSentence = false;
 			}
-
 		}
+
+		if (inSentence){
+			listOfPunctuation.add(".");
+		}
+
+
 		numSentences = listOfPunctuation.size();
 		numWords = listOfWords.size();
 		numSyllables = countOfSyllables;
